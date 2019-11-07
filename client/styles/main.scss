@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: arial, helvetica, sans-serif;
+  background: #0c4d33;
+  color: #fff;
+}
+ul {
+  padding-inline-start: 5px;
+  padding-inline-end: 5px;
+}
+
+ul > li {
+  color: #484848;
+  border-radius: 2px;
+  width: 100%;
+  height: 150px;
+  list-style-type: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #fafafa;
+  border-left: 10px solid #ebf9ec;
+
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 60px 1fr 1fr;
+  grid-template-rows: 1fr 15px 1fr 2fr 2fr 2fr;
+  grid-template-areas: 
+    "avatar name name"
+    "avatar company company"
+    ". . ."
+    "username username username"
+    "email email email"
+    "phone phone phone";
+
+  .avatar { grid-area: avatar; }
+  .name { grid-area: name; }
+  .company { grid-area: company; }
+  .username { grid-area: username; }
+  .email { grid-area: email; }
+  .phone { grid-area: phone; }
+
+  .name {
+    margin-top: 5px;
+    font-weight: bold;
+  }
+
+  .company {
+    font-size: 14px;
+    color: #767676;
+  }
+
+  .username, .email, .phone {
+    font-size: 12px;
+    margin-left: 5px;
+    
+    > span {
+      position: relative;
+      bottom: 3px;
+      left: 5px;
+    }
+  }
+}
+
+.pull-right {
+  float: right;
+}
