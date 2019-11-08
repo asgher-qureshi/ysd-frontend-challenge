@@ -1,59 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Courgette&display=swap');
+
+/**
+ * Screen sizes
+ */
+ $screen-xs:      480px;
+ $screen-xs-min:  $screen-xs;
+ $screen-xs-max:  767px;
+ $screen-sm:      768px;
+ $screen-sm-min:  $screen-sm;
+ $screen-sm-max:  991px;
+ $screen-md:      992px;
+ $screen-md-min:  $screen-md;
+ $screen-md-max:  1023px;
+ $screen-lg:      1024px;
+ $screen-lg-min:  $screen-lg;
+ $screen-lg-max:  1199px;
+ $screen-xl:      1200px;
+ $screen-xl-min:  $screen-xl;
+ $screen-xl-max:  1399px;
+ $screen-xxl:     1400px;
+ $screen-xxl-min: $screen-xxl;
+
+ /**
+ * Font sizes
+ */
+ $font-size-xxs: 10px;
+ $font-size-xs:  12px;
+ $font-size-sm:  14px;
+ $font-size-md:  18px;
+ $font-size-lg:  24px;
+ $font-size-xl:  30px;
+
+ /*
+* LAYOUT SECTION
+*/
 * {
   box-sizing: border-box;
 }
 
 body {
   font-family: arial, helvetica, sans-serif;
-  background: #0c4d33;
-  color: #fff;
+  background: #f0f0f0;
 }
-ul {
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #002219;
+  margin: -8px -8px 0;
+  height: 4.5em;
+
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
+}
+
+.body-container {
+  max-width: $screen-xs;
+  margin: auto;
+}
+
+/*
+* COMMON
+*/
+.avatar { grid-area: avatar; }
+.name { grid-area: name; }
+.company { grid-area: company; }
+.username { grid-area: username; }
+.email { grid-area: email; }
+.phone { grid-area: phone; }
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px);
+}
+
+.pull-right { float: right; }
+.text-uppercase { text-transform: uppercase; }
+.text-lowercase { text-transform: lowercase; }
+
+.card {
+  color: #484848;
+  background: #fafafa;
+  padding: 10px;
+  border-left: 10px solid #ebf9ec;
+  -webkit-border-radius: .5rem;
+  border-radius: .5rem;
+  -webkit-box-shadow: 0 0 1.5rem 0 rgba(0,0,0,.2);
+  box-shadow: 0 0 1.5rem 0 rgba(0,0,0,.2);
+}
+
+/*
+* USERS SECTION
+*/
+ul.users {
   padding-inline-start: 5px;
   padding-inline-end: 5px;
 }
 
-ul > li {
-  color: #484848;
-  border-radius: 2px;
+ul.users > li {
   width: 100%;
   height: 150px;
   list-style-type: none;
-  padding: 10px;
   margin-bottom: 10px;
-  background: #fafafa;
-  border-left: 10px solid #ebf9ec;
-
+  
   display: grid;
   grid-gap: 5px;
-  grid-template-columns: 60px 1fr 1fr;
+  grid-template-columns: 60px 1fr;
   grid-template-rows: 1fr 15px 1fr 2fr 2fr 2fr;
   grid-template-areas: 
-    "avatar name name"
-    "avatar company company"
-    ". . ."
-    "username username username"
-    "email email email"
-    "phone phone phone";
-
-  .avatar { grid-area: avatar; }
-  .name { grid-area: name; }
-  .company { grid-area: company; }
-  .username { grid-area: username; }
-  .email { grid-area: email; }
-  .phone { grid-area: phone; }
+    "avatar name"
+    "avatar company"
+    ". ."
+    "username username"
+    "email email"
+    "phone phone";
 
   .name {
     margin-top: 5px;
-    font-weight: bold;
+    font-weight: 600;
   }
-
+  
   .company {
-    font-size: 14px;
+    font-size:  $font-size-sm;
     color: #767676;
   }
-
+  
   .username, .email, .phone {
-    font-size: 12px;
+    font-size:  $font-size-xs;
     margin-left: 5px;
     
     > span {
@@ -64,6 +140,105 @@ ul > li {
   }
 }
 
-.pull-right {
-  float: right;
+/*
+* DETAILS SECTION
+*/
+.details {
+  margin: 10px;
+  font-size: $font-size-sm;
+
+  > .avatar {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  > .name {
+    font-size: $font-size-md;
+    font-weight: 600;
+    text-align: center;
+    margin: 20px 0 10px;
+  }
+
+  > .company {
+    font-size:  $font-size-sm;
+    color: #767676;
+    text-align: center;
+  }
+
+  > .catch-phrase {
+    font-family: 'Courgette', cursive;
+    text-align: center; 
+    margin-top: 10px;
+    color: #1fab2e;
+  }
+
+  > .user-info {
+    margin-top: 20px;
+    display: grid;
+    grid-gap: 2px;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+      "icon-username label-username"
+      "icon-username username"
+      "icon-email label-email"
+      "icon-email email"
+      "icon-phone label-phone"
+      "icon-phone phone";
+    
+    .icon-username { grid-area: icon-username; }
+    .label-username { grid-area: label-username; }
+    .username { grid-area: username; }
+
+    .icon-email { grid-area: icon-email; }
+    .label-email { grid-area: label-email; }
+    .email { grid-area: email; }
+
+    .icon-phone { grid-area: icon-phone; }
+    .label-phone { grid-area: label-phone; }
+    .phone { grid-area: phone; }
+  }
+
+  > .user-address {
+    margin-top: 20px;
+    display: grid;
+    grid-gap: 2px;
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+      ". label-street label-street"
+      "icon-location street street"
+      "icon-location label-zipcode label-city"
+      ". zipcode city";
+      
+    .icon-location { grid-area: icon-location; }
+    .label-street { grid-area: label-street; }
+    .street { grid-area: street; }
+
+    .label-zipcode { grid-area: label-zipcode; }
+    .label-city { grid-area: label-city; }
+    .zipcode { grid-area: zipcode; }
+    .city { grid-area: city; }
+  }
+
+  label {
+    margin-top: 10px;
+    color: #a2a2a2;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+}
+
+@media all and (min-width: $screen-xs-min) {
+  .body-container {
+    max-width: $screen-md;
+    margin: auto;
+  }
+
+  ul.users > li {
+    width: 310px;
+    float: left;
+    margin-right: 10px;
+  }
 }
