@@ -5,8 +5,9 @@ import ClipLoader from 'react-spinners/ClipLoader';
 
 import ContactIcon from '../icons/Contact.js';
 import MailIcon from '../icons/Mail.js';
+import OutageWarningIcon from '../icons/OutageWarning.js';
 import ProfileIcon from '../icons/Profile.js';
-import ArrowRightIcon from '../icons/SimpleArrowRight.js';
+import SimpleArrowRightIcon from '../icons/SimpleArrowRight.js';
 
 class UserList extends React.Component {
   constructor(props) {
@@ -18,30 +19,37 @@ class UserList extends React.Component {
     };
   }
 
-  componentDidMount() {
-    fetch("http://localhost:3000/api/users/") 
-      .then(res => res.json())
-      .then(
-        (users) => {
-          this.setState({
-            isLoaded: true,
-            users
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+  async componentDidMount() {
+    try {
+      const response = await fetch(`http://localhost:3000/api/users/`);
+
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+
+      const users = await response.json();
+      this.setState({ 
+        users, 
+        isLoaded: true 
+      });
+    } catch (error) {
+      this.setState({ 
+        error, 
+        isLoaded: true
+      });
+    }
   }
   
   render() {
     const { error, isLoaded, users } = this.state;
     
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return (
+        <div className="card error-msg">
+          <OutageWarningIcon width="50" height="50" color="#d31a20" />
+          <span>Der opstod en fejl!<br/> {error.message}</span>
+        </div>
+      );
     } else if (!isLoaded) {
       return (
         <div className="loading">
@@ -49,7 +57,7 @@ class UserList extends React.Component {
             color="#0c4d33"
             sizeUnit={"px"}
             size={150}
-            loading={this.state.loading} />
+            loading={!this.state.isLoaded} />
         </div>
       );
     } 
@@ -75,7 +83,9 @@ class UserList extends React.Component {
                   <div className="phone">
                     <ContactIcon width="16" height="16" color="#1fab2e" /> 
                     <span>{user.phone}</span>
-                    <Link to={`/details/${user.id}`} className="pull-right"><ArrowRightIcon  width="16" height="16" /></Link>
+                    <Link to={`/details/${user.id}`} className="pull-right">
+                      <SimpleArrowRightIcon  width="16" height="16" />
+                    </Link>
                   </div>
                 </li> 
               )

@@ -32,5 +32,4 @@ The API runs on a simple express backend, and runs on localhost port 3000, and h
 * Open your terminal and navigate to the folder where you extracted the project to
 * Run `npm install` to install some dependencies
 * Open the project in your text editor
-<!-- * Start the backend by running `npm start backend` and then start the frontend by running `npm start frontend` in another window -->
 * Start the backend by running `npm run backend` and then start the frontend by running `npm run frontend` in another window
