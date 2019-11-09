@@ -81,6 +81,11 @@ header {
 .text-uppercase { text-transform: uppercase; }
 .text-lowercase { text-transform: lowercase; }
 
+a {
+  color: #1fab2e;
+  &:hover { text-decoration: underline; }
+}
+
 .card {
   color: #484848;
   background: #fafafa;
@@ -90,6 +95,16 @@ header {
   border-radius: .5rem;
   -webkit-box-shadow: 0 0 1.5rem 0 rgba(0,0,0,.2);
   box-shadow: 0 0 1.5rem 0 rgba(0,0,0,.2);
+
+  &.error-msg {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 20px;
+    border-left: 10px solid #fae8e8;
+
+    > span { margin-left: 10px; }
+  }
 }
 
 /*
@@ -177,41 +192,20 @@ ul.users > li {
     margin-top: 20px;
     display: grid;
     grid-gap: 2px;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: 
-      "icon-username label-username"
-      "icon-username username"
-      "icon-email label-email"
-      "icon-email email"
-      "icon-phone label-phone"
-      "icon-phone phone";
-    
-    .icon-username { grid-area: icon-username; }
-    .label-username { grid-area: label-username; }
-    .username { grid-area: username; }
-
-    .icon-email { grid-area: icon-email; }
-    .label-email { grid-area: label-email; }
-    .email { grid-area: email; }
-
-    .icon-phone { grid-area: icon-phone; }
-    .label-phone { grid-area: label-phone; }
-    .phone { grid-area: phone; }
-  }
-
-  > .user-address {
-    margin-top: 20px;
-    display: grid;
-    grid-gap: 2px;
     grid-template-columns: 1fr 2fr 2fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-areas: 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "icon-username label-username label-username"
+      "icon-username username username"
       ". label-street label-street"
       "icon-location street street"
       "icon-location label-zipcode label-city"
       ". zipcode city";
       
+    .icon-username { grid-area: icon-username; }
+    .label-username { grid-area: label-username; }
+    .username { grid-area: username; }
+
     .icon-location { grid-area: icon-location; }
     .label-street { grid-area: label-street; }
     .street { grid-area: street; }
@@ -220,6 +214,38 @@ ul.users > li {
     .label-city { grid-area: label-city; }
     .zipcode { grid-area: zipcode; }
     .city { grid-area: city; }
+  }
+
+  > .user-contact {
+    margin-top: 20px;
+    display: grid;
+    grid-gap: 2px;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+      "icon-email label-email"
+      "icon-email email"
+      "icon-phone label-phone"
+      "icon-phone phone"
+      "icon-website label-website"
+      "icon-website website";
+    
+    .icon-email { grid-area: icon-email; }
+    .label-email { grid-area: label-email; }
+    .email { grid-area: email; }
+
+    .icon-phone { grid-area: icon-phone; }
+    .label-phone { grid-area: label-phone; }
+    .phone { grid-area: phone; }
+
+    .icon-website { grid-area: icon-website; }
+    .label-website { grid-area: label-website; }
+    .website { grid-area: website; }
+  }
+
+  > .back-button {
+    display: block;
+    margin-top: 15px;
   }
 
   label {
@@ -231,14 +257,29 @@ ul.users > li {
 }
 
 @media all and (min-width: $screen-xs-min) {
-  .body-container {
-    max-width: $screen-md;
-    margin: auto;
-  }
+  .body-container { max-width: $screen-sm; }
 
+  /*
+  * USERS SECTION
+  */
   ul.users > li {
     width: 310px;
     float: left;
     margin-right: 10px;
   }
+
+  /*
+  * DETAILS SECTION
+  */
+  .details {    
+    > .user-info {
+      float: left;
+      width: 50%;
+      margin-right: 15px;
+    }
+  }
+}
+
+@media all and (min-width: $screen-sm-min) {
+  .body-container { max-width: $screen-md; }
 }
