@@ -55,21 +55,9 @@ header {
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
 }
 
-.body-container {
-  max-width: $screen-xs;
-  margin: auto;
-}
-
 /*
 * COMMON
 */
-.avatar { grid-area: avatar; }
-.name { grid-area: name; }
-.company { grid-area: company; }
-.username { grid-area: username; }
-.email { grid-area: email; }
-.phone { grid-area: phone; }
-
 .loading {
   display: flex;
   justify-content: center;
@@ -84,6 +72,27 @@ header {
 a {
   color: #1fab2e;
   &:hover { text-decoration: underline; }
+}
+
+.outer {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.inner {
+  max-width: $screen-xs;
+  margin: 0 auto;
+}
+
+.box {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.item {
+  width: 100%;
+  height: 150px;
+  margin: 10px;
 }
 
 .card {
@@ -110,17 +119,7 @@ a {
 /*
 * USERS SECTION
 */
-ul.users {
-  padding-inline-start: 5px;
-  padding-inline-end: 5px;
-}
-
-ul.users > li {
-  width: 100%;
-  height: 150px;
-  list-style-type: none;
-  margin-bottom: 10px;
-  
+.user {
   display: grid;
   grid-gap: 5px;
   grid-template-columns: 60px 1fr;
@@ -132,6 +131,13 @@ ul.users > li {
     "username username"
     "email email"
     "phone phone";
+
+  .avatar { grid-area: avatar; }
+  .name { grid-area: name; }
+  .company { grid-area: company; }
+  .username { grid-area: username; }
+  .email { grid-area: email; }
+  .phone { grid-area: phone; }
 
   .name {
     margin-top: 5px;
@@ -257,20 +263,8 @@ ul.users > li {
 }
 
 @media all and (min-width: $screen-xs-min) {
-  .body-container { max-width: $screen-sm; }
-
-  /*
-  * USERS SECTION
-  */
-  ul.users > li {
-    width: 310px;
-    float: left;
-    margin-right: 10px;
-  }
-
-  /*
-  * DETAILS SECTION
-  */
+  .inner { max-width: $screen-sm; }
+  .item { width: 45%; }
   .details {    
     > .user-info {
       float: left;
@@ -281,5 +275,6 @@ ul.users > li {
 }
 
 @media all and (min-width: $screen-sm-min) {
-  .body-container { max-width: $screen-md; }
+  .inner { max-width: $screen-md; }
+  .item { width: 30%; }
 }
