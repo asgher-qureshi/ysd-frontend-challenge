@@ -60,15 +60,16 @@ class UserList extends React.Component {
             loading={!this.state.isLoaded} />
         </div>
       );
-    } 
+    }
 
     return (
-      <div className="body-container">
-        <ul className="users"> 
+      <div className="outer">
+        <div className="inner">
+          <div className="box">
           {
             users.map((user, index) => {
               return ( 
-                <li key={user.id.toString()} className="card">
+                <div key={user.id.toString()} className="item card user">
                   <Avatar name={user.name} size="50" round={true} color="#0c4d33" className="avatar"/>
                   <div className="name">{user.name}</div>
                   <div className="company">{user.company.name}</div>
@@ -87,11 +88,12 @@ class UserList extends React.Component {
                       <SimpleArrowRightIcon  width="16" height="16" />
                     </Link>
                   </div>
-                </li> 
+                </div>
               )
             })
           }
-        </ul>
+          </div>
+        </div>
       </div>
     );
   }
